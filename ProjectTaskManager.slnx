@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="docker-compose.yml" />
+  </Folder>
+  <Project Path="ProjectTaskManager.API/ProjectTaskManager.API.csproj" Id="1cd4f7e1-313d-4c3f-8450-8551ffb5b481" />
+  <Project Path="ProjectTaskManager.Application/ProjectTaskManager.Application.csproj" Id="c588f06c-e9e0-47a1-a8fc-744322159dd6" />
+  <Project Path="ProjectTaskManager.Domain/ProjectTaskManager.Domain.csproj" Id="acb13852-0a77-48cb-bf84-c953022e4293" />
+  <Project Path="ProjectTaskManager.Infrastructure/ProjectTaskManager.Infrastructure.csproj" Id="75bc0ab5-a2fb-4b0e-865c-27061ececbca" />
+</Solution>

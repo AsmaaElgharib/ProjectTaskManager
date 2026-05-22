@@ -1,0 +1,31 @@
+## .NET gitignore
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+.vs/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+TestResults/
+*.nupkg
+*.snupkg
+*.[Cc]ache
+*.coverage
+*.coveragexml
+*.runsettings
+publish/
+artifacts/
+
+# Secrets
+appsettings.*.json
+!appsettings.Development.json
+secrets.json
+
+# Docker
+.docker/
+
+# IDE
+.idea/
+*.DS_Store
