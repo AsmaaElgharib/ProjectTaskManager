@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using ProjectTaskManager.API.Extensions;
 using ProjectTaskManager.API.Middleware;
 using ProjectTaskManager.Application;
 using ProjectTaskManager.Application.Extensions;
@@ -10,6 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 // --- Services ---
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerWithJwt();
 
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);

@@ -1,5 +1,5 @@
-﻿using System.Text;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -9,6 +9,7 @@ using ProjectTaskManager.Domain.Interfaces;
 using ProjectTaskManager.Infrastructure.Data;
 using ProjectTaskManager.Infrastructure.Repositories;
 using ProjectTaskManager.Infrastructure.Services;
+using System.Text;
 
 namespace ProjectTaskManager.Application.Extensions
 {
@@ -46,9 +47,10 @@ namespace ProjectTaskManager.Application.Extensions
             services.AddHttpContextAccessor();
 
             // Repositories
+            services.AddScoped<IProjectRepository, ProjectRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
 
-            // Services 
+            // Services
             services.AddScoped<ICurrentUserService, CurrentUserService>();
 
             return services;
