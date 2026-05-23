@@ -63,4 +63,6 @@ namespace ProjectTaskManager.API.Controllers
             return Ok(result);
         }
     }
+
+    public record UpdateProjectRequest(string Name, string? Description);
 }

@@ -1,10 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using ProjectTaskManager.API.Extensions;
 using ProjectTaskManager.API.Middleware;
-using ProjectTaskManager.Application;
 using ProjectTaskManager.Application.Extensions;
-using ProjectTaskManager.Infrastructure;
 using ProjectTaskManager.Infrastructure.Data;
+using ProjectTaskManager.Infrastructure.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 

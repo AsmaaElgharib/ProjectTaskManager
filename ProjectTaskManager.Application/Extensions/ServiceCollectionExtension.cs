@@ -1,4 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using FluentValidation;
+using MediatR;
+using ProjectTaskManager.Application.Common.Behaviors;
 
 namespace ProjectTaskManager.Application.Extensions
 {
@@ -8,6 +11,7 @@ namespace ProjectTaskManager.Application.Extensions
         {
             var applicationAssembly = typeof(ServiceCollectionExtension).Assembly;
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(applicationAssembly));
+            services.AddValidatorsFromAssembly(applicationAssembly);
             return services;
         }
     }

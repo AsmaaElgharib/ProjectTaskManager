@@ -11,7 +11,7 @@ using ProjectTaskManager.Infrastructure.Repositories;
 using ProjectTaskManager.Infrastructure.Services;
 using System.Text;
 
-namespace ProjectTaskManager.Application.Extensions
+namespace ProjectTaskManager.Infrastructure.Extensions
 {
     public static class ServiceCollectionExtension
     {
@@ -48,9 +48,12 @@ namespace ProjectTaskManager.Application.Extensions
 
             // Repositories
             services.AddScoped<IProjectRepository, ProjectRepository>();
+            services.AddScoped<ITaskRepository, TaskRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
 
             // Services
+            services.AddScoped<IJwtService, JwtService>();
+            services.AddScoped<IPasswordHasher, PasswordHasher>();
             services.AddScoped<ICurrentUserService, CurrentUserService>();
 
             return services;
