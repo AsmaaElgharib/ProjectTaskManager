@@ -24,3 +24,22 @@ This project follows **Clean Architecture** principles with a strict dependency 
 │    (ProjectTaskManager.Infrastructure) │
 └─────────────────────────────────────────┘
 ```
+
+
+---
+
+## Tech Stack
+
+| Concern          | Technology                          |
+|------------------|-------------------------------------|
+| Framework        | ASP.NET Core 9 Web API              |
+| ORM              | Entity Framework Core 9             |
+| Database         | SQL Server 2022                     |
+| Authentication   | JWT Bearer Tokens                   |
+| CQRS             | MediatR 12                         |
+| Validation       | FluentValidation 11                 |
+| Password Hashing | BCrypt.Net                          |
+| API Docs         | Swagger / Swashbuckle               | 
+| Containerization | Docker + Docker Compose             |
+
+---
