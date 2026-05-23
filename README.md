@@ -43,3 +43,43 @@ This project follows **Clean Architecture** principles with a strict dependency 
 | Containerization | Docker + Docker Compose             |
 
 ---
+
+
+## Project Structure
+
+```
+ProjectTaskManager/
+├── src/
+│   ├── ProjectTaskManager.Domain/          # Enterprise business rules
+│   │   ├── Common/BaseEntity.cs
+│   │   ├── Entities/                       # User, Project, ProjectTask
+│   │   ├── Enums/                          # TaskStatus, TaskPriority
+│   │   └── Interfaces/                     # IProjectRepository, ITaskRepository, IUserRepository
+│   │
+│   ├── ProjectTaskManager.Application/     # Application business rules
+│   │   ├── Common/
+│   │   │   ├── Behaviors/ValidationBehavior.cs   # MediatR pipeline
+│   │   │   ├── Exceptions/                        # NotFoundException, UnauthorizedException, etc.
+│   │   │   ├── Interfaces/                        # IJwtService, IPasswordHasher, ICurrentUserService
+│   │   │   └── Models/ApiResponse.cs              # Generic response wrapper
+│   │   └── Features/
+│   │       ├── Auth/Commands/              # RegisterCommand, LoginCommand
+│   │       ├── Projects/Commands/          # CreateProject, UpdateProject, DeleteProject
+│   │       ├── Projects/Queries/           # GetAllProjects, GetProjectById
+│   │       ├── Tasks/Commands/             # CreateTask, UpdateTask, DeleteTask
+│   │       └── Tasks/Queries/              # GetTasksByProject
+│   │
+│   ├── ProjectTaskManager.Infrastructure/  # Frameworks & drivers
+│   │   ├── Data/
+│   │   │   ├── ApplicationDbContext.cs
+│   │   │   ├── Configurations/             # EF Fluent API config
+│   │   │   └── Migrations/                 # EF migration files
+│   │   ├── Repositories/                   # Repository implementations
+│   │   └── Services/                       # JwtService, PasswordHasher, CurrentUserService
+│   │
+│   └── ProjectTaskManager.API/             # Presentation layer
+│       ├── Controllers/                    # AuthController, ProjectsController, TasksController
+│       ├── Middleware/                     # GlobalExceptionHandlingMiddleware
+│       ├── Extensions/                     # SwaggerExtensions
+│       └── Program.cs
+
