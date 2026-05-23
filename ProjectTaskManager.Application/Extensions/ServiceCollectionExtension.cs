@@ -12,6 +12,7 @@ namespace ProjectTaskManager.Application.Extensions
             var applicationAssembly = typeof(ServiceCollectionExtension).Assembly;
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(applicationAssembly));
             services.AddValidatorsFromAssembly(applicationAssembly);
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
             return services;
         }
     }

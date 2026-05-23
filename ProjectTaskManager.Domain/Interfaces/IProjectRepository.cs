@@ -10,5 +10,6 @@ namespace ProjectTaskManager.Domain.Interfaces
         Task DeleteAsync(Project project, CancellationToken cancellationToken = default);
         Task<IEnumerable<Project>> GetAllByUserIdAsync(Guid userId, CancellationToken cancellationToken = default);
         Task<Project?> GetByIdWithTasksAsync(Guid id, CancellationToken cancellationToken = default);
+        Task<bool> ExistsAsync(Guid projectId, Guid userId, CancellationToken cancellationToken);
     }
 }

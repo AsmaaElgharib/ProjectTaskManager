@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ProjectTaskManager.Application.Common.Models;
 using ProjectTaskManager.Application.Features.Projects.Commands.CreateProject;
@@ -11,9 +11,10 @@ using ProjectTaskManager.Application.Features.Projects.Queries.GetProjectById;
 
 namespace ProjectTaskManager.API.Controllers
 {
-    [Route("api/[controller]")]
-    [Produces("application/json")]
     [ApiController]
+    [Route("api/v1/projects")]
+    [Authorize]
+    [Produces("application/json")]
     public class ProjectsController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -22,6 +23,7 @@ namespace ProjectTaskManager.API.Controllers
 
 
         [HttpGet]
+        [ProducesResponseType(typeof(ApiResponse<IEnumerable<ProjectDto>>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAll(CancellationToken cancellationToken)
         {
             var result = await _mediator.Send(new GetAllProjectsQuery(), cancellationToken);
@@ -30,6 +32,8 @@ namespace ProjectTaskManager.API.Controllers
 
         ///Get a project by ID.
         [HttpGet("{id:guid}")]
+        [ProducesResponseType(typeof(ApiResponse<ProjectDetailDto>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetById(Guid id, CancellationToken cancellationToken)
         {
             var result = await _mediator.Send(new GetProjectByIdQuery(id), cancellationToken);
@@ -37,7 +41,9 @@ namespace ProjectTaskManager.API.Controllers
         }
 
         /// Create a new project.
-        [HttpPost] 
+        [HttpPost]
+        [ProducesResponseType(typeof(ApiResponse<ProjectDto>), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Create([FromBody] CreateProjectCommand command, CancellationToken cancellationToken)
         {
             var result = await _mediator.Send(command, cancellationToken);
@@ -45,7 +51,9 @@ namespace ProjectTaskManager.API.Controllers
         }
 
         ///Update an existing project.
-        [HttpPut("{id:guid}")] 
+        [HttpPut("{id:guid}")]
+        [ProducesResponseType(typeof(ApiResponse<ProjectDto>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
         public async Task<IActionResult> Update(Guid id, [FromBody] UpdateProjectRequest request, CancellationToken cancellationToken)
         {
             var command = new UpdateProjectCommand(id, request.Name, request.Description);

@@ -11,7 +11,7 @@ using LoginRequest = ProjectTaskManager.Application.Features.Auth.LoginRequest;
 
 namespace ProjectTaskManager.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/auth")]
     [ApiController]
     [Produces("application/json")]
     public class AuthController : ControllerBase
